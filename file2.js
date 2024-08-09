@@ -13,11 +13,23 @@ document.getElementById('guess').addEventListener('keydown', function(event) {
     }
 });
 
+   // Add event listener for clearing input
+   document.getElementById('guess').addEventListener('input', function() {
+    if (document.getElementById('guess').value === '') {
+        document.getElementById('message').textContent = '';
+    }
+});
+
 // Function to handle the guess
 function handleGuess() {
     const userGuess = Number(document.getElementById('guess').value);
     const messageElement = document.getElementById('message');
     const attemptsElement = document.getElementById('attempts');
+
+    if (userGuess === '') {
+        // Do nothing if input is empty
+        return;
+    }
 
     if (!userGuess || userGuess < 1 || userGuess > 100) {
         messageElement.textContent = 'Please enter a number between 1 and 100.';
